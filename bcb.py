@@ -2,7 +2,6 @@ import time
 import tkinter
 from tkinter import *
 
-# from chat import get_response, bot_name
 
 BG_GRAY = "#ffffff"
 BG_COLOR = "#000000"
