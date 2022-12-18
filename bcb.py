@@ -3,7 +3,7 @@ import tkinter
 from tkinter import *
 
 
-BG_GRAY = "#ffffff"
+BG_BLACK = "#ffffff"
 BG_COLOR = "#000000"
 TEXT_COLOR = "#000000"
 
@@ -26,16 +26,16 @@ class ChatApplication:
         self.window.configure(width=470, height=550, bg=BG_COLOR)
 
         # head label
-        head_label = Label(self.window, bg=BG_COLOR, fg=BG_GRAY,
+        head_label = Label(self.window, bg=BG_COLOR, fg=BG_BLACK,
                            text="Welcome, I am AI chatbot how can i help you", font=FONT_BOLD, pady=10)
         head_label.place(relwidth=1)
 
         # tiny divider
-        line = Label(self.window, width=450, bg=BG_GRAY)
+        line = Label(self.window, width=450, bg=BG_BLACK)
         line.place(relwidth=1, rely=0.07, relheight=0.012)
 
         # text widget
-        self.text_widget = Text(self.window, width=20, height=2, bg=BG_GRAY, fg=TEXT_COLOR,
+        self.text_widget = Text(self.window, width=20, height=2, bg=BG_BLACK, fg=TEXT_COLOR,
                                 font=FONT, padx=5, pady=5)
         self.text_widget.place(relheight=0.745, relwidth=1, rely=0.08)
         self.text_widget.configure(cursor="arrow", state=DISABLED)
@@ -50,18 +50,18 @@ class ChatApplication:
         bottom_label.place(relwidth=1, rely=0.825)
 
         # message entry box
-        self.msg_entry = Entry(bottom_label, bg=BG_GRAY, fg=TEXT_COLOR, font=FONT)
+        self.msg_entry = Entry(bottom_label, bg=BG_BLACK, fg=TEXT_COLOR, font=FONT)
         self.msg_entry.place(relwidth=0.74, relheight=0.06, rely=0.008, relx=0.011)
         self.msg_entry.focus()
         self.msg_entry.bind("<Return>", self._on_enter_pressed)
 
         # send button
-        send_button = Button(bottom_label, text="Enter", font="#ffffff", width=20, bg=BG_GRAY,
+        send_button = Button(bottom_label, text="Enter", font="#ffffff", width=20, bg=BG_BLACK,
                              command=lambda: self._on_enter_pressed(None))
         send_button.place(relx=0.77, rely=0.008, relheight=0.06, relwidth=0.22)
 
     def _on_enter_pressed(self, event):
-        msg = self.msg_entry.get()
+        msg = (self.msg_entry.get()).lower()
         self._insert_message(msg, "You", "musa")
 
     def _insert_message(self, msg, sender, receiver):
@@ -75,14 +75,19 @@ class ChatApplication:
             "how old are you": "I am just 1 day older",
             "what is time now": n
         }
-        bot = {"name": "musa"}
+        nt = " Result not found enter something"
+        if msg in questions :
+            msg2 = f"{receiver}: {questions[msg]}\n\n"
+        else  :
+            msg2 = f"{receiver}: {nt}\n\n"
+        bot = {"name": "musa"}#Here you can modify bot name instead of musa
         self.msg_entry.delete(0, END)
         msg1 = f"{sender}: {msg}\n\n"
         self.text_widget.configure(state=NORMAL)
         self.text_widget.insert(END, msg1)
         self.text_widget.configure(state=DISABLED)
 
-        msg2 = f"{receiver}: {questions[msg]}\n\n"
+        
         self.text_widget.configure(state=NORMAL)
         self.text_widget.insert(END, msg2)
         self.text_widget.configure(state=DISABLED)
