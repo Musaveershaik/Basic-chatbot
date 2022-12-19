@@ -75,7 +75,7 @@ class ChatApplication:
             "how old are you": "I am just 1 day older",
             "what is time now": n
         }
-        nt = " Result not found enter something"
+        nt = " Result not found enter something else"
         if msg in questions :
             msg2 = f"{receiver}: {questions[msg]}\n\n"
         else  :
