@@ -62,7 +62,7 @@ class ChatApplication:
 
     def _on_enter_pressed(self, event):
         msg = (self.msg_entry.get()).lower()
-        self._insert_message(msg, "You", "musa")
+        self._insert_message(msg, "You", "musa")#Here you can modify bot name instead of musa
 
     def _insert_message(self, msg, sender, receiver):
         if not msg:
@@ -80,7 +80,7 @@ class ChatApplication:
             msg2 = f"{receiver}: {questions[msg]}\n\n"
         else  :
             msg2 = f"{receiver}: {nt}\n\n"
-        bot = {"name": "musa"}#Here you can modify bot name instead of musa
+        bot = {"name": "musa"}#Also here you can modify bot name instead of musa
         self.msg_entry.delete(0, END)
         msg1 = f"{sender}: {msg}\n\n"
         self.text_widget.configure(state=NORMAL)
