@@ -9,11 +9,13 @@ TEXT_COLOR = "#000000"
 
 FONT = "Helvetica 14"
 FONT_BOLD = "Helvetica 13 bold"
-
-
+#Here defining bot-name
+m1 = input("Enter AI name : ")
+mn = {'ainame' : m1}
 class ChatApplication:
 
     def __init__(self):
+        
         self.window = Tk()
         self._setup_main_window()
 
@@ -59,19 +61,22 @@ class ChatApplication:
         send_button = Button(bottom_label, text="Enter", font="#ffffff", width=20, bg=BG_BLACK,
                              command=lambda: self._on_enter_pressed(None))
         send_button.place(relx=0.77, rely=0.008, relheight=0.06, relwidth=0.22)
-
+        
     def _on_enter_pressed(self, event):
         msg = (self.msg_entry.get()).lower()
-        self._insert_message(msg, "You", "musa")#Here you can modify bot name instead of musa
+        m = mn.get('ainame')
+
+        self._insert_message(msg, "You", m)
 
     def _insert_message(self, msg, sender, receiver):
         if not msg:
             return
+        m = mn.get('ainame')
         n = time.ctime()
         questions = {
             "hi": "hey",
             "how are you": "I am fine",
-            "what is your name": "My name is Musa",
+            "what is your name": f"my name is {m}",
             "how old are you": "I am just 1 day older",
             "what is time now": n
         }
@@ -80,7 +85,6 @@ class ChatApplication:
             msg2 = f"{receiver}: {questions[msg]}\n\n"
         else  :
             msg2 = f"{receiver}: {nt}\n\n"
-        bot = {"name": "musa"}#Also here you can modify bot name instead of musa
         self.msg_entry.delete(0, END)
         msg1 = f"{sender}: {msg}\n\n"
         self.text_widget.configure(state=NORMAL)
